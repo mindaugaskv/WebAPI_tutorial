@@ -30,13 +30,15 @@ namespace Backend.API
 
             
             Mapper.Initialize(cfg => {
-                cfg.CreateMap<Enties.LegoPart, Models.LegoPartDto>()
-                    .ForMember(m => m.Id, s => s.Ignore())
-                    .ForMember(m => m.Name, s => s.MapFrom(d => $"{d.Name}  {d.Shape}"))
-                    ;
-
-                cfg.CreateMap<Models.LegoPartDto, Enties.LegoPart>();
-                
+                cfg.CreateMap<Entities.LegoPart, Models.LegoPartDto>()
+                    .ForMember(m => m.Name, s => s.MapFrom(d => $"{d.Name}  {d.Shape}"));
+                cfg.CreateMap<Models.LegoPartDto, Entities.LegoPart>();
+                cfg.CreateMap<Models.LegoPartCreateDto, Entities.LegoPart>();
+                cfg.CreateMap<Models.LegoPartUpdateDto, Entities.LegoPart>();
+                cfg.CreateMap<Entities.LegoToy, Models.LegoToyDto>();
+                cfg.CreateMap<Models.LegoToyDto, Entities.LegoToy>();
+                cfg.CreateMap<Models.LegoToyUpdateDto, Entities.LegoToy>();
+                cfg.CreateMap<Models.LegoToyCreateDto, Entities.LegoToy>();
             });
         }
     }

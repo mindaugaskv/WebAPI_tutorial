@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Backend.API.Enties
+namespace Backend.API.Entities
 {
-    public class LegoPart
+    public class LegoToy
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Color { get; set; }
-        public string Size { get; set; }
-        public string Type { get; set; }
-        public string Shape { get; set; }
+        public float Price { get; set; }
         public string ImageUrl { get; set; }
 
         public DateTime? CreateDate { get; set; }
@@ -21,6 +18,6 @@ namespace Backend.API.Enties
         public DateTime? ModifiedDate { get; set; }
         public string ModifiedUSer { get; set; }
 
-        public virtual ICollection<LegoToy> Toys { get; set; } = new List<LegoToy>();
+        public virtual ICollection<LegoPart> Parts { get; set; } = new List<LegoPart>();
     }
 }

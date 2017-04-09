@@ -28,7 +28,7 @@ import { LegoPartAddComponent } from './components/lego-part-add/lego-part-add.c
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true }),
     AlertModule.forRoot(),
     RouterModule.forRoot([
       {

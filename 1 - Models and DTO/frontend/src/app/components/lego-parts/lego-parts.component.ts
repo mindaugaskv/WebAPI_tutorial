@@ -25,9 +25,14 @@ export class LegoPartsComponent implements OnInit {
     this.item = null;
 
     if(item == null) return;
-    this.dataService.addLegoPart(item);
     
-    this.refreshList();
+    if(item.id){
+      this.dataService.updateLegoPart(item)
+        .then(() => this.refreshList());
+    } else {
+      this.dataService.addLegoPart(item)
+        .then(() => this.refreshList());
+    }
   }
 
   addNewPart(){

@@ -31,8 +31,7 @@ export class LegoToyDetailsComponent implements OnInit {
   }
 
   saveItem(item: LegoToy){
-    this.dataService.saveLegoToy(item);
-    this.location.back();
+    this.dataService.saveLegoToy(item).then(() => this.location.back() );
   }
 
   removePart(part: LegoPart){

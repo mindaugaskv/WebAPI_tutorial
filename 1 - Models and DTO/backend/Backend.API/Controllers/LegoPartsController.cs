@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Backend.API.Enties;
+using Backend.API.Entities;
 using Backend.API.Models;
 
 namespace Backend.API.Controllers
@@ -27,7 +27,7 @@ namespace Backend.API.Controllers
         }
 
         // GET: api/LegoParts/5
-        [ResponseType(typeof(LegoPart))]
+        [ResponseType(typeof(LegoPartDto))]
         public IHttpActionResult GetLegoPart(int id)
         {
             LegoPart legoPart = db.LegoParts.Find(id);
@@ -36,24 +36,27 @@ namespace Backend.API.Controllers
                 return NotFound();
             }
 
-            return Ok(legoPart);
+            var result = AutoMapper.Mapper.Map<LegoPartDto>(legoPart);
+            return Ok(result);
         }
 
         // PUT: api/LegoParts/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLegoPart(int id, LegoPart legoPart)
+        public IHttpActionResult PutLegoPart(int id, LegoPartUpdateDto legoPartDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != legoPart.Id)
+            if (id != legoPartDto.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(legoPart).State = EntityState.Modified;
+            var legoPart = db.LegoParts.Find(legoPartDto.Id);
+
+            AutoMapper.Mapper.Map(legoPartDto, legoPart);
 
             try
             {
@@ -75,18 +78,21 @@ namespace Backend.API.Controllers
         }
 
         // POST: api/LegoParts
-        [ResponseType(typeof(LegoPart))]
-        public IHttpActionResult PostLegoPart(LegoPart legoPart)
+        [ResponseType(typeof(LegoPartDto))]
+        public IHttpActionResult PostLegoPart(LegoPartCreateDto legoPartDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            var legoPart = AutoMapper.Mapper.Map<LegoPart>(legoPartDto);
             db.LegoParts.Add(legoPart);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = legoPart.Id }, legoPart);
+            var savedPart = AutoMapper.Mapper.Map<LegoPartDto>(legoPart);
+
+            return CreatedAtRoute("DefaultApi", new { id = savedPart.Id }, savedPart);
         }
 
         // DELETE: api/LegoParts/5

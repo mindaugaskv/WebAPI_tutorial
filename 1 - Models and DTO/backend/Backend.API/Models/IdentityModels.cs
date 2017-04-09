@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Data.Entity;
-using Backend.API.Enties;
+using Backend.API.Entities;
 
 namespace Backend.API.Models
 {
