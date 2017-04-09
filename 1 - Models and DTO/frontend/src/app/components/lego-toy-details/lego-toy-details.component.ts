@@ -14,6 +14,7 @@ import { LegoPart } from "app/models/lego-part";
 export class LegoToyDetailsComponent implements OnInit {
   legoToy: LegoToy = new LegoToy();
   isLoading: boolean = false;
+  isAddPart: boolean = false;
 
   constructor(private route: ActivatedRoute,
     private dataService: DataServiceService,
@@ -40,7 +41,14 @@ export class LegoToyDetailsComponent implements OnInit {
   }
 
   addPart(){
-    this.router.navigate(['/toy/add', this.legoToy.id]);
+    this.isAddPart = true;
+  }
+
+  addPartToToy(part){
+    this.isAddPart = false;
+    if(part != null) {
+      this.legoToy.parts.push(part);
+    }
   }
 
   loadItem(id: string){
