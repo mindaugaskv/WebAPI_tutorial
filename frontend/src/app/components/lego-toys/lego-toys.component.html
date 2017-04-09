@@ -1,0 +1,27 @@
+<div *ngIf="isLoading">Siunčiami duomenys...</div>
+<div *ngIf="!isLoading">
+  <button (click)="createNew()" class="btn btn-primary">Sukurti naują</button>
+  <div *ngFor="let i of legoToys">
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>{{i.name}}</h4>
+        <div>{{i.description}}</div>
+        <b>Kaina:</b> {{i.price}} EUR
+      </div>
+      <div class="col-sm-6">
+        <img src="{{i.imageUrl}}" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <button (click)="edit(i)" class="btn btn-sm">Redaguoti</button>
+      </div>
+    </div>
+
+    Dalys:
+    <ul>
+      <li *ngFor="let p of i.parts">{{p.name}}</li>
+    </ul>
+  </div>
+</div>
