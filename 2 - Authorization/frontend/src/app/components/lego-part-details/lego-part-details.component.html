@@ -1,0 +1,72 @@
+<div ng-form="add-part">
+
+  <div class="row">
+    <div class="form-horizontal">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Id: </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [(ngModel)]="itemDetails.id" readonly />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Pavadinimas*: </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [(ngModel)]="itemDetails.name" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Spalva: </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [(ngModel)]="itemDetails.color" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Dydis: </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [(ngModel)]="itemDetails.size" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Tipas: </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [(ngModel)]="itemDetails.type" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Forma: </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [(ngModel)]="itemDetails.shape" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Nuotrauka URL *: </label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" [(ngModel)]="itemDetails.imageUrl" required />
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <img src="{{itemDetails.imageUrl}}" />
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <button (click)="save()" class="btn btn-primary pull-left">Išsaugoti</button>
+      <button (click)="cancel()" class="btn btn-default pull-right">Atšaukti</button>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,8 @@
+<div>
+  <select [(ngModel)]="selectedPart">
+    <option>-- Pasirinkite lego kaladėlę --</option>
+    <option *ngFor="let i of legoParts" [ngValue]="i">{{i.name}}</option>
+  </select>
+  <button class="btn btn-default btn-small" (click)="addPart()">Prideti</button>
+</div>
+
