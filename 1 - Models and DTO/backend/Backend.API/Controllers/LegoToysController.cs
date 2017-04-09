@@ -55,9 +55,10 @@ namespace Backend.API.Controllers
                 return BadRequest();
             }
 
+            //TODO: adding parts creates new part items in DB, use automapper for collections or resolve parts manualy
             var lego = db.LegoToys.Find(id);
             AutoMapper.Mapper.Map(legoToyDto, lego);
-
+            
             try
             {
                 db.SaveChanges();

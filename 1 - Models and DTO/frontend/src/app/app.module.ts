@@ -14,6 +14,7 @@ import { InMemoryDataService } from "app/services/in-memory-data.service";
 import { LegoToysComponent } from './components/lego-toys/lego-toys.component';
 import { LegoToyDetailsComponent } from './components/lego-toy-details/lego-toy-details.component';
 import { LegoPartAddComponent } from './components/lego-part-add/lego-part-add.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LegoPartAddComponent } from './components/lego-part-add/lego-part-add.c
     LegoPartDetailsComponent,
     LegoToysComponent,
     LegoToyDetailsComponent,
-    LegoPartAddComponent
+    LegoPartAddComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +35,12 @@ import { LegoPartAddComponent } from './components/lego-part-add/lego-part-add.c
     RouterModule.forRoot([
       {
         path: '',
-        redirectTo: '/toys',
+        redirectTo: '/home',
         pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: HomeComponent
       },
       {
         path: 'toys',

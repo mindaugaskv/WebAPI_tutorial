@@ -4,20 +4,20 @@
   <table class="table table-hover">
     <tr>
       <th>Id</th>
-      <th>Spalva</th>
+      <th>Pavadinimas</th>
       <th>Dydis</th>
       <th>Tipas</th>
       <th>Nuotrauka</th>
     </tr>
     <tr *ngFor="let i of parts" (click)="item = i" [ngClass]="{selected: i == item}">
       <td>{{i.id}}</td>
-      <td>{{i.color}}</td>
+      <td>{{i.name}}</td>
       <td>{{i.size}}</td>
       <td>{{i.type}}</td>
       <td><img src="{{i.imageUrl}}" width="50px" /></td>
     </tr>
   </table>
-  <button *ngIf="!item" (click)="addNewPart()" class="btn btn-primary">Add New Part</button>
+  <button *ngIf="!item" (click)="addNewPart()" class="btn btn-primary">Pridėti naują dalį</button>
 </div>
 
 <app-lego-part-details *ngIf="item" [itemDetails]="item" (saveEvent)="saveItem($event)"></app-lego-part-details>
