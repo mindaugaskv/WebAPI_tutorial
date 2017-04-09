@@ -16,6 +16,7 @@ namespace Backend.API.Migrations
 
         protected override void Seed(Backend.API.Models.ApplicationDbContext context)
         {
+            foreach (var i in context.LegoParts) context.LegoParts.Remove(i);
             if (!context.LegoParts.Any())
             {
                 context.LegoParts.AddRange(new List<LegoPart>() {
