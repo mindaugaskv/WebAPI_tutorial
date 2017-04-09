@@ -1,0 +1,58 @@
+  <div *ngIf="isLoading">Siunčiami duomenys...</div>
+  <div *ngIf="!isLoading">
+    <div class="row">
+      <div class="col-sm-6">
+        
+        <div class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Id: </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="legoToy.id" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Pavadinimas: </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="legoToy.name" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Aprašymas: </label>
+            <div class="col-sm-10">
+              <textarea type="text" class="form-control" [(ngModel)]="legoToy.description" rows="10"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Kaina: </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="legoToy.price" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Paveikslėlio URL: </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" [(ngModel)]="legoToy.imageUrl" />
+            </div>
+          </div>          
+        </div> 
+       
+      </div>
+      <div class="col-sm-6">
+        <img src="{{legoToy.imageUrl}}" />
+      </div>
+    </div>
+
+    Dalys:
+    <button (click)="addPart()" class="btn btn-sm btn-primary">Pridėti dalį</button>
+    <ul>
+      <li *ngFor="let p of legoToy.parts">{{p.name}} <button class="btn btn-xs" (click)="removePart(p)">Pašalinti</button></li>
+    </ul>
+    
+    <button (click)="saveItem(legoToy)" class="btn btn-primary">Saugoti</button>
+    <button (click)="goBack()" class="btn btn-default">Atgal</button>
+  </div>
+
