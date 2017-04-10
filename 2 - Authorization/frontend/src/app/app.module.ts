@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { RouterModule } from '@angular/router';
+import { AuthHttp, AuthConfig } from 'ng2-bearer';
 
 import { AppComponent } from './app.component';
 import { LegoPartsComponent } from './components/lego-parts/lego-parts.component';
@@ -15,6 +16,10 @@ import { LegoToysComponent } from './components/lego-toys/lego-toys.component';
 import { LegoToyDetailsComponent } from './components/lego-toy-details/lego-toy-details.component';
 import { LegoPartAddComponent } from './components/lego-part-add/lego-part-add.component';
 import { HomeComponent } from './components/home/home.component';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig(), http, options);
+}
 
 @NgModule({
   declarations: [
@@ -60,7 +65,11 @@ import { HomeComponent } from './components/home/home.component';
       }
     ])
   ],
-  providers: [],
+  providers: [{
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

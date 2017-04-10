@@ -4,6 +4,7 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { LegoToy } from "app/models/lego-toy";
+import { AuthHttp } from 'ng2-bearer';
 
 @Injectable()
 export class DataServiceService {
@@ -11,7 +12,7 @@ export class DataServiceService {
   legoPartsUrl: string = 'http://localhost:35201/api/LegoParts';
   legoToysUrl: string = 'http://localhost:35201/api/LegoToys';
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private authHttp: AuthHttp) {
   }
 
   getLegoToy(id: string): Promise<LegoToy> {
@@ -67,7 +68,7 @@ export class DataServiceService {
   }    
 
   getLegoParts(): Promise<LegoPart[]> {
-    return this.http.get(this.legoPartsUrl)
+    return this.authHttp.get(this.legoPartsUrl)
       .toPromise()
       .then(
         response => {
